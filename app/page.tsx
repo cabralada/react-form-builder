@@ -5,6 +5,7 @@ import { addData, cleanData } from "./redux/features/data-slice"
 import { AppDispatch, useAppSelector } from "./redux/store"
 import { FormEvent, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
+import prettyPrint from "@/utility/pretifiy"
 
 export default function Home() {
   const router = useRouter()
@@ -12,6 +13,8 @@ export default function Home() {
   const textareaContent = useRef()
 
   const [text, setText] = useState<string>(selector)
+  const [isError, setIsError] = useState(false)
+  const [errorText, setErrorText] = useState("")
   const dispatch = useDispatch<AppDispatch>()
 
   const handleCleanData = () => {
@@ -22,16 +25,44 @@ export default function Home() {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
+  }
 
-    text && dispatch(addData(text))
-    text && router.replace("/result")
+  const handleApply = () => {
+    try {
+      const pretifiedText = prettyPrint(text)
+
+      setErrorText("")
+      setIsError(false)
+
+      text && dispatch(addData(pretifiedText))
+      text && router.replace("/result")
+    } catch (error) {
+      setIsError(true)
+      setErrorText("Invalid JSON")
+    }
+  }
+
+  const handleFormatJSON = () => {
+    try {
+      const pretifiedText = prettyPrint(text)
+      setText(pretifiedText)
+      setIsError(false)
+    } catch (error) {
+      setIsError(true)
+      setErrorText("Invalid JSON")
+    }
   }
 
   const isValidinput = text?.length === 0
 
   return (
     <form onSubmit={handleSubmit}>
-      <p className="mb-3 p-2 text-white text-xs italic bg-red-500">Error...</p>
+      {isError && (
+        <p className="mb-3 p-2 text-white text-xs italic bg-red-500">
+          {errorText}
+        </p>
+      )}
+
       <textarea
         ref={textareaContent.current}
         value={text}
@@ -50,6 +81,15 @@ export default function Home() {
 
         <button
           disabled={isValidinput}
+          onClick={handleFormatJSON}
+          className="w-full bg-gray-100 hover:bg-gray-300 text-black font-bold p-4 rounded disabled:opacity-50 hover:disabled:bg-gray-100"
+        >
+          Format
+        </button>
+
+        <button
+          disabled={isValidinput}
+          onClick={handleApply}
           className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold p-4 rounded disabled:opacity-50 hover:disabled:bg-blue-500"
         >
           Apply
