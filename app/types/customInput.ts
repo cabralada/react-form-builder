@@ -1,4 +1,20 @@
-﻿export interface CustomInputTypes {
+﻿export interface JSONForm {
+  title: string
+  desicription: string
+  form: CustomInputTypes[]
+  actions: ButtonsActions[]
+}
+
+export interface CustomInputTypes {
+  label: string
+  config: CustomInputTypesConfig
+}
+
+export interface ButtonsActions {
+  type: string
+  label: string
+}
+export interface CustomInputTypesConfig {
   type: CustomInput_Type
   accept?: string
   alt: string

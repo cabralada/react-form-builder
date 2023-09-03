@@ -110,5 +110,19 @@
         "width": "null"
       }
     }
+  ],
+  "actions": [
+    {
+      "type": "button",
+      "label": "Text button1"
+    },
+    {
+      "type": "button",
+      "label": "Text button2"
+    },
+    {
+      "type": "button",
+      "label": "Text button3"
+    }
   ]
 }
