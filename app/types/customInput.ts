@@ -1,4 +1,29 @@
-﻿export interface JSONForm {
+﻿type CustomInput_Type =
+  | "button"
+  | "checkbox"
+  | "color"
+  | "date"
+  | "datetime-local"
+  | "email"
+  | "file"
+  | "hidden"
+  | "image"
+  | "month"
+  | "number"
+  | "password"
+  | "radio"
+  | "range"
+  | "reset"
+  | "search"
+  | "submit"
+  | "tel"
+  | "text"
+  | "time"
+  | "url"
+  | "week"
+  | "textarea"
+
+export interface JSONForm {
   title: string
   desicription: string
   form: CustomInputTypes[]
@@ -7,6 +32,9 @@
 
 export interface CustomInputTypes {
   label: string
+}
+
+export interface ConfigInput {
   config: CustomInputTypesConfig
 }
 
@@ -18,57 +46,34 @@ export interface CustomInputTypesConfig {
   type: CustomInput_Type
   accept?: string
   alt: string
-  autocomplete?: string
-  autofocus?: string
-  checked?: string
-  dirname?: string
-  disabled?: string
+  autocomplete?: "on" | "off"
+  autofocus?: boolean
+  checked?: boolean
+  disabled?: boolean
   form?: string
   formaction?: string
   formenctype?: string
   formmethod?: string
-  formnovalidate?: string
+  formnovalidate?: boolean
   formtarget?: string
   height?: string
   list?: string
   max?: string
-  maxlength?: string
+  maxlength?: number
   min?: string
-  minlength?: string
-  multiple?: string
+  minlength?: number
+  multiple?: boolean
   name?: string
   pattern?: string
   placeholder?: string
-  readonly?: string
-  required?: string
-  size?: string
+  readonly?: boolean
+  required?: boolean
+  size?: number
   src?: string
   step?: string
   value?: string
   width?: string
-}
-
-enum CustomInput_Type {
-  "button",
-  "checkbox",
-  "color",
-  "date",
-  "datetime-local",
-  "email",
-  "file",
-  "hidden",
-  "image",
-  "month",
-  "number",
-  "password",
-  "radio",
-  "range",
-  "reset",
-  "search",
-  "submit",
-  "tel",
-  "text",
-  "time",
-  "url",
-  "week",
+  cols?: number
+  wrap?: "hard" | "soft"
+  rows?: number
 }
