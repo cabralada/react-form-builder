@@ -2,7 +2,15 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux"
 import { data } from "./features/data-slice"
 import storage from "redux-persist/lib/storage"
-import { persistReducer } from "redux-persist"
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+} from "redux-persist"
 
 const persistConfig = {
   key: "root",
@@ -20,6 +28,12 @@ export const store = configureStore({
   reducer: {
     store: persistedReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 })
 
 export type RootState = ReturnType<typeof store.getState>
