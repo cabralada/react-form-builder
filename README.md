@@ -14,21 +14,75 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to use
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+{
+  "title": "Title form",
+  "description": "Test description",
+  "form": [
+    {
+      "label": "Textarea",
+      "config": {
+        "type": "textarea"
+      }
+    },
+    {
+      "label": "Date",
+      "config": {
+        "type": "date"
+      }
+    },
+    {
+      "label": "radio",
+      "config": {
+        "type": "radio",
+        "accept": null,
+        "alt": null,
+        "autocomplete": null,
+        "autofocus": null,
+        "checked": null,
+        "dirname": null,
+        "disabled": false,
+        "form": null,
+        "formaction": null,
+        "formenctype": null,
+        "formmethod": null,
+        "formnovalidate": null,
+        "formtarget": null,
+        "height": null,
+        "list": null,
+        "max": null,
+        "maxlength": null,
+        "min": null,
+        "minlength": null,
+        "multiple": null,
+        "name": "radiogroup",
+        "pattern": null,
+        "placeholder": null,
+        "required": null,
+        "size": null,
+        "src": null,
+        "step": null,
+        "value": null,
+        "width": null
+      }
+    }
+  ],
+  "actions": [
+    {
+      "type": "button",
+      "label": "Text button1"
+    },
+    {
+      "type": "button",
+      "label": "Text button2"
+    },
+    {
+      "type": "button",
+      "label": "Text button3"
+    }
+  ]
+}
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
